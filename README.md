@@ -1,4 +1,9 @@
 # Audio Waveform Image Generator
+## 🍴
+
+This fork adds python bindings of the program using swig. also adds an example api in flask.
+
+
 
 ![Build Status](https://github.com/bbc/audiowaveform/workflows/CMake/badge.svg?branch=master)
 
