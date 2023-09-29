@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "web"
+version = "0.1.0"
+description = ""
+authors = ["mohamed-aziz <me@aziz.tn>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.3.3"
+gunicorn = "^21.2.0"
+orjson = "^3.9.7"
+requests = "^2.31.0"
+flask-caching = "^2.0.2"
+redis = "^5.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

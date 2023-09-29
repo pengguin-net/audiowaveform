@@ -7,7 +7,7 @@ import json
 opt = main.OptionHandler()
 options = main.Options()
 
-options.setInputFilename("/mnt/devdrive/files/projects/pengguin/files/Recording.wav")
+options.setInputFilename("/mnt/devdrive/files/projects/pengguin/files/bf51da71b26de5cd2790edeeee7f2ed62b7f5e38d18764663bb8bc854d663618.wav")
 options.setOutputFormat("json")
 options.setInputFormat("wav")
 options.handleZoomOption("256")
