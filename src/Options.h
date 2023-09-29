@@ -52,9 +52,19 @@ class Options
             return input_filename_;
         }
 
+        void setInputFilename(const std::string& filename)
+        {
+            input_filename_ = filename;
+        }
+
         const std::string& getOutputFilename() const
         {
             return output_filename_;
+        }
+
+        void setOutputFilename(const std::string& filename)
+        {
+            output_filename_ = filename;
         }
 
         bool getSplitChannels() const { return split_channels_; }
@@ -66,11 +76,21 @@ class Options
             return input_format_;
         }
 
+        void setInputFormat(const std::string& format)
+        {
+            input_format_ = format;
+        }
+
         bool hasOutputFormat() const { return has_output_format_; }
 
         const std::string& getOutputFormat() const
         {
             return output_format_;
+        }
+
+        void setOutputFormat(const std::string& format)
+        {
+            output_format_ = format;
         }
 
         double getStartTime() const { return start_time_; }
@@ -124,7 +144,6 @@ class Options
 
         void reportError(const std::string& message) const;
 
-    private:
         void handleAmplitudeScaleOption(const std::string& option_value);
         void handleZoomOption(const std::string& option_value);
 

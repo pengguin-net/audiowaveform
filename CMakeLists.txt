@@ -57,6 +57,8 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake/modules)
 message(STATUS "CMAKE_MODULE_PATH='${CMAKE_MODULE_PATH}'")
 
 include(SystemInfo)
+include(UseSWIG)
+
 
 message(STATUS "Architecture: ${SYSTEM_ARCH}")
 
@@ -119,6 +121,19 @@ if(Boost_FOUND)
     message(STATUS "Boost_LIBRARIES='${Boost_LIBRARIES}'")
     include_directories(${Boost_INCLUDE_DIRS})
 endif(Boost_FOUND)
+
+find_package(SWIG REQUIRED)
+if(SWIG_FOUND)
+    message(STATUS "SWIG_VERSION='${SWIG_VERSION}'")
+    message(STATUS "SWIG_EXECUTABLE='${SWIG_EXECUTABLE}'")
+endif(SWIG_FOUND)
+
+find_package(PythonLibs REQUIRED)
+if(PYTHONLIBS_FOUND)
+    message(STATUS "PYTHON_INCLUDE_DIRS='${PYTHON_INCLUDE_DIRS}'")
+    message(STATUS "PYTHON_LIBRARIES='${PYTHON_LIBRARIES}'")
+    include_directories(${PYTHON_INCLUDE_DIRS})
+endif(PYTHONLIBS_FOUND)
 
 #-------------------------------------------------------------------------------
 #
@@ -263,6 +278,7 @@ set(MODULES
 set(SRCS
     src/Main.cpp
     ${MODULES}
+        src/Streams.cpp
 )
 
 add_executable(audiowaveform ${SRCS})
@@ -382,3 +398,14 @@ install(
 )
 
 #-------------------------------------------------------------------------------
+
+set(INTERFACES
+        src/swig/main.i
+)
+
+set_property(SOURCE ${INTERFACES} PROPERTY CPLUSPLUS ON)
+set_property(SOURCE ${INTERFACES} PROPERTY SWIG_MODULE_NAME main)
+
+swig_add_library(main TYPE SHARED LANGUAGE python SOURCES ${MODULES} ${INTERFACES} src/Streams.cpp)
+swig_link_libraries(main ${PYTHON_LIBRARIES} ${LIBS})
+
